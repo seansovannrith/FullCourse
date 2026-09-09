@@ -39,12 +39,12 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
 
         return response([
             'message' => 'User signed in.',
             'user' => new UserResource($user),
-            'access_token' => $token
+            'token' => $token
         ]);
     }
     public function signout(Request $request)
