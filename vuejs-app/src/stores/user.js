@@ -7,7 +7,7 @@ export const useUserStore = defineStore("user", {
         email: null,
     }),
     getters: {
-        isAuthenticated: (state) => !!state.id,
+        isAuthenticated: (state) => state.id !== null,
     },
     actions: {
         // User state management

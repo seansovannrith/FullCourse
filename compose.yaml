@@ -8,11 +8,12 @@ services:
         volumes:
             - ./laravel-app:/var/www/html
             - ./docker/laravel/entrypoint.development.sh:/usr/local/bin/entrypoint.development.sh
+            - ./docker/laravel/supervisord.development.conf:/etc/supervisor/conf.d/supervisord.development.conf
         ports:
             - "8000:8000"
         depends_on:
             - mysql-service
-        command: ["bash", "/usr/local/bin/entrypoint.development.sh"]
+        command: [ "bash", "/usr/local/bin/entrypoint.development.sh" ]
 
     vuejs-service:
         container_name: vuejs-container
@@ -27,15 +28,15 @@ services:
             - "5173:5173"
         depends_on:
             - laravel-service
-        command: ["sh", "/usr/local/bin/entrypoint.development.sh"]
+        command: [ "sh", "/usr/local/bin/entrypoint.development.sh" ]
 
     mysql-service:
         image: mysql:8.0
         container_name: mysql-container
         environment:
-            MYSQL_DATABASE: my_database_system
-            MYSQL_USER: my_database_user
-            MYSQL_PASSWORD: my_database_password
+            MYSQL_DATABASE: chat_system
+            MYSQL_USER: chat_user
+            MYSQL_PASSWORD: chat_password
             MYSQL_ROOT_PASSWORD: root
             TZ: UTC
         volumes:
